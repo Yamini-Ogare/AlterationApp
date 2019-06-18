@@ -6,23 +6,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-import java.io.IOException;
-import java.util.ArrayList;
-
 import ognora.alterationapp.Data.Api;
-import ognora.alterationapp.View.LoginActivity;
-import ognora.alterationapp.View.PopLoginActivity;
-import ognora.alterationapp.View.PopSignupActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
