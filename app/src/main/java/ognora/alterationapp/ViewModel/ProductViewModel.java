@@ -62,14 +62,14 @@ public class ProductViewModel extends AndroidViewModel {
     public void addToCart(ProductModel product){
 
      productDatabase.productDoa().addProduct(product);
-        Toast.makeText(context, "Added to Cart", Toast.LENGTH_LONG);
+        Toast.makeText(context, "Added to Cart", Toast.LENGTH_LONG).show();
 
     }
 
     public void removeFromCart(ProductModel product){
 
         productDatabase.productDoa().deleteProduct(product);
-            Toast.makeText(context, "Removed ", Toast.LENGTH_LONG);
+            Toast.makeText(context, "Removed ", Toast.LENGTH_LONG).show();
 
     }
 

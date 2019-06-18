@@ -3,7 +3,7 @@
     package="ognora.alterationapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,16 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.CartActivity"></activity>
-        <activity android:name=".View.DescriptionActivity" />
-        <activity android:name=".View.ProductActivity" />
-        <activity android:name=".View.CategoryActivity">
+        <activity android:name=".View.PopSignupActivity"></activity>
+        <activity android:name=".View.PopLoginActivity" />
+        <activity android:name=".View.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".View.CartActivity" />
+        <activity android:name=".View.DescriptionActivity" />
+        <activity android:name=".View.ProductActivity" />
+        <activity android:name=".View.CategoryActivity" />
     </application>
 
 </manifest>
