@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import ognora.alterationapp.Model.CategoryModel;
 import ognora.alterationapp.Model.ProductModel;
+import ognora.alterationapp.Model.UserModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -56,5 +57,10 @@ public interface Api  {
       @Query("device_id") String device_id
     );
 
+
+    @GET("get_user_details")
+    Call<UserModel> getUser(
+            @Query("user_id") String user_id
+    );
 
 }

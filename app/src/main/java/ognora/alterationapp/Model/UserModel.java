@@ -1,6 +1,8 @@
 package ognora.alterationapp.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class UserModel implements Serializable {
 
@@ -8,7 +10,7 @@ public class UserModel implements Serializable {
     String name;
     String phone_no;
     String password;
-    String[] address;
+    ArrayList<String> address;
     String email;
     String role;
     String[] jwtToken;
@@ -40,7 +42,7 @@ public class UserModel implements Serializable {
         return password;
     }
 
-    public String[] getAddress() {
+    public ArrayList<String> getAddress() {
         return address;
     }
 

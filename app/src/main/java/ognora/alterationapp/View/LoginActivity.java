@@ -1,8 +1,10 @@
 package ognora.alterationapp.View;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -21,13 +23,22 @@ import ognora.alterationapp.ViewModel.UserViewModel;
 public class LoginActivity extends AppCompatActivity {
 
     Button login, signUp;
+    UserViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final UserViewModel viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+      viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+      viewModel.checkSharedPreferences().observe(this, new Observer<Boolean>() {
+          @Override
+          public void onChanged(@Nullable Boolean aBoolean) {
+              if(aBoolean)
+                  startActivity(new Intent(LoginActivity.this, CategoryActivity.class));
+          }
+      });
 
         login = findViewById(R.id.button_login);
         signUp = findViewById(R.id.button_signup);
@@ -36,9 +47,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*Intent intent = new Intent(LoginActivity.this, PopLogin.class);
-                //   intent.putExtra("context", (Serializable) getBaseContext());
-                startActivity(intent);*/
 
                    startActivity(new Intent(LoginActivity.this, PopLoginActivity.class));
             }
@@ -47,10 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
-                Intent intent = new Intent(LoginActivity.this, PopSignUp.class);
-                intent.putExtra("context", (Parcelable) getBaseContext());
-                startActivity(intent);*/
+
                   startActivity(new Intent(LoginActivity.this, PopSignupActivity.class));
             }
         });
