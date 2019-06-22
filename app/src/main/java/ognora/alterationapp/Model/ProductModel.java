@@ -1,0 +1,98 @@
+package ognora.alterationapp.Model;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import java.io.Serializable;
+
+
+@Entity(tableName = "ProductTable")
+public class ProductModel implements Serializable{
+
+    @PrimaryKey
+    @NonNull
+    String _id;
+    @ColumnInfo
+    String image_url;
+    @ColumnInfo
+    String service_type;
+    @ColumnInfo
+    String description;
+    @ColumnInfo
+    Integer alteration_price;
+    @ColumnInfo
+    String gender ;
+    @ColumnInfo
+    boolean is_available;
+    @ColumnInfo
+    String category;
+
+    public ProductModel() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public String getService_type() {
+        return service_type;
+    }
+
+    public void setService_type(String service_type) {
+        this.service_type = service_type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getAlteration_price() {
+        return alteration_price;
+    }
+
+    public void setAlteration_price(Integer alteration_price) {
+        this.alteration_price = alteration_price;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public boolean isIs_available() {
+        return is_available;
+    }
+
+    public void setIs_available(boolean is_available) {
+        this.is_available = is_available;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+}
