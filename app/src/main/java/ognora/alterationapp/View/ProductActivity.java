@@ -49,7 +49,7 @@ public class ProductActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        productListAdapter =new ProductListAdapter(arrayList, 1,ProductActivity.this);
+        productListAdapter =new ProductListAdapter(arrayList,ProductActivity.this);
         recyclerView.setAdapter(productListAdapter);
 
         viewModel.getProductByCategory(bundle.getString("category")).observe(this, new Observer<ArrayList<ProductModel>>() {

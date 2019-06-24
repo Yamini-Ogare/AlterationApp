@@ -6,17 +6,22 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+
+import ognora.alterationapp.Model.CartModel;
 import ognora.alterationapp.Model.ProductModel;
 
 @Dao
 public interface DataAcessObject  {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     void addProduct(ProductModel productModel);
+     void addProduct(CartModel Model);
 
-    @Query("SELECT * From ProductTable")
-    ProductModel[] getAllProducts();
+    @Query("SELECT * From Cart_Table")
+    CartModel[] getAllProducts();
 
     @Delete
-    void deleteProduct(ProductModel productModel);
+    void deleteProduct(CartModel cartModel);
+
+    @Query("SELECT count From Cart_Table where product_id = :id")
+    int getItem(String id);
 }

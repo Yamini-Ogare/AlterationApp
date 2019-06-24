@@ -61,7 +61,7 @@ public class DescriptionActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   viewModel.addToCart(product);
+                   viewModel.addToCart(product, 1);
             }
         });
     }

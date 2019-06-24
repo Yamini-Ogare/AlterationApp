@@ -5,20 +5,20 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import ognora.alterationapp.Model.ProductModel;
+import ognora.alterationapp.Model.CartModel;
 
 
-@Database(entities = {ProductModel.class}, version = 1)
-public abstract class ProductDatabase extends RoomDatabase {
+@Database(entities = {CartModel.class}, version = 1)
+public abstract class CartDatabase extends RoomDatabase {
 
-    public abstract DataAcessObject productDoa();
-    private static ProductDatabase INSTANCE;
+    public abstract DataAcessObject CartDao();
+    private static CartDatabase INSTANCE;
 
-    public static ProductDatabase getDatabase(Context context){
+    public static CartDatabase getDatabase(Context context){
 
         if (INSTANCE == null) {
             INSTANCE =
-                    Room.databaseBuilder(context.getApplicationContext(), ProductDatabase.class, "Product_database")
+                    Room.databaseBuilder(context.getApplicationContext(), CartDatabase.class, "Cart_database")
                             // allow queries on the main thread.
                             // Don't do this on a real app! See PersistenceBasicSample for an example.
                             .allowMainThreadQueries()

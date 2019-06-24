@@ -14,7 +14,9 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import ognora.alterationapp.ListAdapters.CartListAdapter;
 import ognora.alterationapp.ListAdapters.ProductListAdapter;
+import ognora.alterationapp.Model.CartModel;
 import ognora.alterationapp.Model.ProductModel;
 import ognora.alterationapp.R;
 import ognora.alterationapp.ViewModel.ProductViewModel;
@@ -22,10 +24,10 @@ import ognora.alterationapp.ViewModel.ProductViewModel;
 public class CartActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ProductListAdapter adapter;
+    CartListAdapter adapter;
     Toolbar toolbar;
     Button button;
-    ArrayList<ProductModel> arrayList = new ArrayList<>();
+    ArrayList<CartModel> arrayList = new ArrayList<>();
     public  ProductViewModel viewModel;
 
     @Override
@@ -42,15 +44,15 @@ public class CartActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter =new ProductListAdapter(arrayList,2, CartActivity.this);
+        adapter =new CartListAdapter(arrayList, CartActivity.this);
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
-        viewModel.getCartItems().observe(this, new Observer<ArrayList<ProductModel>>() {
+        viewModel.getCartItems().observe(this, new Observer<ArrayList<CartModel>>() {
             @Override
-            public void onChanged(@Nullable ArrayList<ProductModel> productModels) {
-                arrayList.addAll(productModels);
+            public void onChanged(@Nullable ArrayList<CartModel> Models) {
+                arrayList.addAll(Models);
                 adapter.notifyDataSetChanged();
             }
         });

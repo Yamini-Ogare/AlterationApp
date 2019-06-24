@@ -7,26 +7,15 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
-
-@Entity(tableName = "ProductTable")
 public class ProductModel implements Serializable{
 
-    @PrimaryKey
-    @NonNull
     String _id;
-    @ColumnInfo
     String image_url;
-    @ColumnInfo
     String service_type;
-    @ColumnInfo
     String description;
-    @ColumnInfo
     Integer alteration_price;
-    @ColumnInfo
     String gender ;
-    @ColumnInfo
     boolean is_available;
-    @ColumnInfo
     String category;
 
     public ProductModel() {
