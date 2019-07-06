@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/pro_img"
+        />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/pro_name"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:text="jfkdfjknfdjvnjdfbvkdfng"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text2"
+        android:textSize="18sp"
+        android:layout_marginVertical="10dp"
+        android:text="Rs. "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/pro_price"
+        android:text="5000"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="X"
+        android:textSize="18sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pro_qty"
+        android:textSize="18sp"
+        android:text="34"
+        android:layout_marginVertical="10dp"
+        android:textStyle="bold"/>
+
+
+
+</LinearLayout>

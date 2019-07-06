@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,23 +41,41 @@ public class PopSignupActivity extends AppCompatActivity {
                 viewModel.signup(phone.getText().toString()).observe(PopSignupActivity.this, new Observer<Boolean>() {
                     @Override
                     public void onChanged(@Nullable Boolean aBoolean) {
-                        if(aBoolean!=null){
-                            if(aBoolean){
-                     final UserModel user = new UserModel(name.getText().toString(), phone.getText().toString(), password.getText().toString(), email.getText().toString());
+
+                        if (checkNotEmpty(name) && checkNotEmpty(phone) && checkNotEmpty(email) && checkNotEmpty(password)) {
+                            if (aBoolean != null) {
+                                if (aBoolean) {
+                                    final UserModel user = new UserModel(name.getText().toString(), phone.getText().toString(), password.getText().toString(), email.getText().toString());
 
 
-                                Intent intent = new Intent(PopSignupActivity.this, PopLoginActivity.class);
-                            intent.putExtra("user", user);
-                            startActivity(intent);
+                                    Intent intent = new Intent(PopSignupActivity.this, PopLoginActivity.class);
+                                    intent.putExtra("user", user);
+                                    startActivity(intent);
 
 
-                        }else{
-                            startActivity(new Intent(PopSignupActivity.this, LoginActivity.class));
-                        }}
+                                } else {
+                                    startActivity(new Intent(PopSignupActivity.this, LoginActivity.class));
+                                }
+                            }
+                    }
                     }
                 });
             }
         });
 
+    }
+
+    public Boolean checkNotEmpty(EditText e){
+        Boolean notempty = false;
+
+        if(TextUtils.isEmpty(e.getText())){
+            e.setError("Required Field");
+            e.requestFocus();
+            notempty = false;
+
+        }else
+            notempty = true ;
+
+        return notempty;
     }
 }

@@ -2,30 +2,32 @@ package ognora.alterationapp.View;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 
-import ognora.alterationapp.ListAdapters.ProductListAdapter;
-import ognora.alterationapp.Model.ProductModel;
+import ognora.alterationapp.ListAdapters.CartListAdapter;
+import ognora.alterationapp.Model.CartModel;
 import ognora.alterationapp.R;
 import ognora.alterationapp.ViewModel.ProductViewModel;
 
 public class CartActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ProductListAdapter adapter;
+    CartListAdapter adapter;
     Toolbar toolbar;
     Button button;
-    ArrayList<ProductModel> arrayList = new ArrayList<>();
+    ArrayList<CartModel> arrayList = new ArrayList<>();
     public  ProductViewModel viewModel;
 
     @Override
@@ -38,23 +40,34 @@ public class CartActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Cart");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter =new ProductListAdapter(arrayList,2, CartActivity.this);
+        adapter =new CartListAdapter(arrayList, CartActivity.this);
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
-        viewModel.getCartItems().observe(this, new Observer<ArrayList<ProductModel>>() {
+        viewModel.getCartItems().observe(this, new Observer<ArrayList<CartModel>>() {
             @Override
-            public void onChanged(@Nullable ArrayList<ProductModel> productModels) {
-                arrayList.addAll(productModels);
+            public void onChanged(@Nullable ArrayList<CartModel> Models) {
+                arrayList.addAll(Models);
                 adapter.notifyDataSetChanged();
             }
         });
 
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(CartActivity.this, SelectAddressActivity.class));
+
+
+            }
+        });
 
 
 
@@ -76,5 +89,10 @@ public class CartActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

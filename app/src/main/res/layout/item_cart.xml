@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="8dp"
-    android:id="@+id/item_category"
+    android:id="@+id/item_cart"
     >
 
     <RelativeLayout
@@ -21,33 +21,74 @@
             android:id="@+id/image_product"
             />
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_toRightOf="@+id/image_product"
             android:id="@+id/name_product"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/price_product"
+            android:layout_marginTop="8dp"
+            />
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:id="@+id/price_product"
+            android:id="@+id/is_available"
             android:layout_toRightOf="@+id/image_product"
             android:layout_below="@+id/name_product"
-            android:layout_marginTop="5dp"
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="10sp"
             />
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/image_product"
-            android:layout_below="@+id/price_product"
-            android:layout_toLeftOf="@+id/addToCart"
-            android:layout_marginTop="13dp"
-            android:id="@+id/is_available"
-            android:textSize="15sp"
+            android:layout_below="@+id/is_available"
+            android:layout_marginTop="12dp"
+            android:textSize="14sp"
+            android:id="@+id/qty"
+            android:text="Qty: "
             />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/qty"
+            android:layout_below="@+id/is_available"
+            android:layout_toLeftOf="@+id/button_plus"
+            android:layout_marginTop="15dp"
+            android:id="@+id/qty_product"
+            android:textSize="13sp"
+            />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/button_plus"
+            android:layout_below="@+id/is_available"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/button_minus"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/plus"/>
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/button_minus"
+            android:layout_below="@+id/is_available"
+            android:layout_toLeftOf="@+id/removeFromCart"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/minus"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,7 +97,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/shortdes_product"
             android:textSize="15sp"
-            android:text="Remove from Cart"
+            android:text="Remove"
 
             />
 

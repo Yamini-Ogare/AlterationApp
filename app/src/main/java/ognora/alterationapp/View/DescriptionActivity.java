@@ -3,8 +3,8 @@ package ognora.alterationapp.View;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
+
 import ognora.alterationapp.Model.ProductModel;
 import ognora.alterationapp.R;
 import ognora.alterationapp.ViewModel.CategoryViewModel;
@@ -44,6 +46,7 @@ public class DescriptionActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Description");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -61,7 +64,7 @@ public class DescriptionActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   viewModel.addToCart(product);
+                   viewModel.addToCart(product, 1);
             }
         });
     }
@@ -87,7 +90,11 @@ public class DescriptionActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 
 
 

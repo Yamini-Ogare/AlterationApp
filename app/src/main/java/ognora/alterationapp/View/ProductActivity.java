@@ -3,9 +3,9 @@ package ognora.alterationapp.View;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+
 import java.util.ArrayList;
+
 import ognora.alterationapp.ListAdapters.ProductListAdapter;
 import ognora.alterationapp.Model.ProductModel;
 import ognora.alterationapp.R;
@@ -43,13 +45,14 @@ public class ProductActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Products");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         bundle = getIntent().getExtras();
         viewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        productListAdapter =new ProductListAdapter(arrayList, 1,ProductActivity.this);
+        productListAdapter =new ProductListAdapter(arrayList, ProductActivity.this);
         recyclerView.setAdapter(productListAdapter);
 
         viewModel.getProductByCategory(bundle.getString("category")).observe(this, new Observer<ArrayList<ProductModel>>() {
@@ -85,4 +88,9 @@ public class ProductActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 }

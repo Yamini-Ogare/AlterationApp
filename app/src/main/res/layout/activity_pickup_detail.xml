@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.PickupDetailActivity"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Pickup Address:-"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        android:id="@+id/pickup_address"
+        android:textSize="20sp"
+        android:textColor="#000"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Pickup Date:-"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/date"
+        android:text="date/month/year"
+        android:textSize="21sp"
+        android:gravity="center_vertical"
+
+        />
+
+      <Button
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/calender"
+          android:id="@+id/calender"
+          android:layout_toRightOf="@+id/date"
+          android:layout_marginTop="10dp"/>
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Pickup Time:-"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/time"
+            android:text="hh : mm   AM/PM"
+            android:textSize="21sp"
+            android:gravity="center_vertical"
+
+            />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/clock"
+            android:id="@+id/clock"
+            android:layout_toRightOf="@+id/time"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/cont"
+            android:text="Continue"
+            android:layout_alignParentBottom="true"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="#FF0000"
+            android:textColor="#ffff"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -12,8 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.PopSignupActivity"></activity>
-        <activity android:name=".View.PopLoginActivity" />
+        <activity android:name=".View.AboutActivity" />
+        <activity
+            android:name=".View.ProfileActivity" />
+        <activity
+            android:name=".View.OrderDetailActivity" />
+        <activity
+            android:name=".View.OrdersActivity" />
+        <activity
+            android:name=".View.BillActivity" />
+        <activity
+            android:name=".View.PickupDetailActivity" />
+        <activity
+            android:name=".View.AddressFormActivity" />
+        <activity
+            android:name=".View.SelectAddressActivity" />
+        <activity
+            android:name=".View.PopSignupActivity" />
+        <activity
+            android:name=".View.PopLoginActivity" />
         <activity android:name=".View.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +39,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.CartActivity" />
-        <activity android:name=".View.DescriptionActivity" />
-        <activity android:name=".View.ProductActivity" />
+        <activity
+            android:name=".View.DescriptionActivity" />
+        <activity
+            android:name=".View.ProductActivity"/>
         <activity android:name=".View.CategoryActivity" />
     </application>
 

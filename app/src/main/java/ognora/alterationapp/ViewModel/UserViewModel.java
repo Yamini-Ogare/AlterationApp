@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+
 import ognora.alterationapp.Data.Api;
+import ognora.alterationapp.Model.OrderModel;
 import ognora.alterationapp.Model.UserModel;
 import ognora.alterationapp.R;
 import ognora.alterationapp.View.CategoryActivity;
@@ -33,8 +37,8 @@ public class UserViewModel extends AndroidViewModel {
 
     public UserViewModel(@NonNull Application application) {
         super(application);
-        this.context = getApplication().getBaseContext();
-        preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
+        this.context = application.getBaseContext();
+        preferences = context.getSharedPreferences("myPref",Context.MODE_PRIVATE );
         editor = preferences.edit();
     }
 
@@ -62,7 +66,7 @@ public class UserViewModel extends AndroidViewModel {
 
                     if (response.body().get("success").getAsBoolean()) {
                         success.setValue(true);
-                        editor.putString("user_id", response.body().get("user_id").getAsString()).commit();
+                        editor.putString("user_id", response.body().get("user_id").getAsString()).apply();
                     } else
                         success.setValue(false);
                 } else
@@ -248,5 +252,33 @@ public class UserViewModel extends AndroidViewModel {
 
          return logout;
 
+    }
+
+    public LiveData<ArrayList<OrderModel>> getAllOrders(){
+        final MutableLiveData<ArrayList<OrderModel>> arrayList = new MutableLiveData<>();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<ArrayList<OrderModel>> call = api.getAllOrders(preferences.getString("user_id",""));
+
+        call.enqueue(new Callback<ArrayList<OrderModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<OrderModel>> call, Response<ArrayList<OrderModel>> response) {
+                if(response.isSuccessful()){
+
+                    arrayList.setValue(response.body());                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<OrderModel>> call, Throwable t) {
+
+            }
+        });
+
+        return  arrayList;
     }
 }

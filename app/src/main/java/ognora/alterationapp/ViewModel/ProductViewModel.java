@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import ognora.alterationapp.Data.Api;
-import ognora.alterationapp.Data.ProductDatabase;
+import ognora.alterationapp.Data.CartDatabase;
+import ognora.alterationapp.Model.CartModel;
 import ognora.alterationapp.Model.ProductModel;
-import ognora.alterationapp.View.CartActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,13 +24,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProductViewModel extends AndroidViewModel {
     MutableLiveData<ArrayList<ProductModel>> arrayList = new MutableLiveData<>();
+    MutableLiveData<ArrayList<CartModel>> cartlist = new MutableLiveData<>();
     Context context;
-    private ProductDatabase productDatabase ;
+    private CartDatabase cartDatabase;
+
+    CartModel cartModel;
 
     public ProductViewModel(@NonNull Application application) {
         super(application);
         this.context = getApplication().getBaseContext();
-        productDatabase = ProductDatabase.getDatabase(application);
+        cartDatabase = CartDatabase.getDatabase(application);
     }
 
     public MutableLiveData<ArrayList<ProductModel>> getProductByCategory(String categoryname) {
@@ -59,27 +62,42 @@ public class ProductViewModel extends AndroidViewModel {
         return arrayList;
     }
 
-    public void addToCart(ProductModel product){
+    public void addToCart(ProductModel product, int cnt){
+        int cart = cartDatabase.CartDao().getItem(product.get_id());
+        int count;
 
-     productDatabase.productDoa().addProduct(product);
+        if(cart != 0) {
+         count = cart + cnt ;
+
+        } else
+            count =cnt;
+
+            cartModel = new CartModel(product.get_id(), product.getImage_url(),
+                    product.getService_type(), product.getDescription(),product.isIs_available(), product.getAlteration_price(), count);
+     cartDatabase.CartDao().addProduct(cartModel);
         Toast.makeText(context, "Added to Cart", Toast.LENGTH_LONG).show();
 
     }
 
-    public void removeFromCart(ProductModel product){
+    public void removeFromCart(CartModel cartModel){
 
-        productDatabase.productDoa().deleteProduct(product);
+        cartDatabase.CartDao().deleteProduct(cartModel);
             Toast.makeText(context, "Removed ", Toast.LENGTH_LONG).show();
 
     }
 
-    public LiveData<ArrayList<ProductModel>> getCartItems (){
+    public LiveData<ArrayList<CartModel>> getCartItems (){
 
-        ArrayList<ProductModel> pro = new ArrayList<>(Arrays.asList(productDatabase.productDoa().getAllProducts()));
-        arrayList.setValue(pro);
-        return arrayList ;
+        ArrayList<CartModel> pro = new ArrayList<>(Arrays.asList(cartDatabase.CartDao().getAllProducts()));
+        cartlist.setValue(pro);
+        return cartlist ;
     }
 
+    public void updateCount (int cnt, String id) {
+
+
+        cartDatabase.CartDao().updateCount(cnt,id);
+    }
 
 
 
